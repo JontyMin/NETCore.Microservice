@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServerCenter
+namespace ClientCredentialApi
 {
     public class Program
     {
@@ -20,7 +20,6 @@ namespace IdentityServerCenter
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls("http://localhost:5001");
                     webBuilder.UseStartup<Startup>();
                 });
     }

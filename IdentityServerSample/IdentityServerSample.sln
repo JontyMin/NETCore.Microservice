@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerCenter", "IdentityServerCenter\IdentityServerCenter.csproj", "{91F3B427-F6C0-4B09-8504-0F6DDEB99289}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientCredentialApi", "ClientCredentialApi\ClientCredentialApi.csproj", "{4DF9463B-1DB4-4841-972A-5043F2DA28DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91F3B427-F6C0-4B09-8504-0F6DDEB99289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F3B427-F6C0-4B09-8504-0F6DDEB99289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F3B427-F6C0-4B09-8504-0F6DDEB99289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F3B427-F6C0-4B09-8504-0F6DDEB99289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DF9463B-1DB4-4841-972A-5043F2DA28DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF9463B-1DB4-4841-972A-5043F2DA28DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF9463B-1DB4-4841-972A-5043F2DA28DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF9463B-1DB4-4841-972A-5043F2DA28DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {22A34317-2990-4923-BAD8-B22D17F926EB}
+	EndGlobalSection
+EndGlobal
