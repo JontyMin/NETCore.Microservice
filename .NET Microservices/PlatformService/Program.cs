@@ -1,4 +1,6 @@
-using Microsoft.OpenApi.Models;
+
+using PlatformService.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,10 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "PlatformService", Version = "v1" });
 });
+
+builder.Services.AddDbContext<AppDbContext>(opt=>opt.UseInMemoryDatabase("InMem"));
+builder.Services.AddScoped<IPlatformRepo,PlatformRepo>();
+
 
 var app = builder.Build();
 
@@ -27,3 +33,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+PrepDb.PrepPopulation(app);
