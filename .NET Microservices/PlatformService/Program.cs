@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddDbContext<AppDbContext>(opt=>opt.UseInMemoryDatabase("InMem"));
 builder.Services.AddScoped<IPlatformRepo,PlatformRepo>();
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
@@ -32,6 +32,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+PrepDb.PrepPopulation(app);
+
 app.Run();
 
-PrepDb.PrepPopulation(app);

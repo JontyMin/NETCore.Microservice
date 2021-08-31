@@ -1,3 +1,7 @@
+using System;
+using System.Linq;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using PlatformService.Models;
 namespace PlatformService.Data
 {
@@ -6,7 +10,7 @@ namespace PlatformService.Data
         public static void PrepPopulation(IApplicationBuilder app)
         {
             using var serviceScope = app.ApplicationServices.CreateScope();
-            SeedData(context: serviceScope.ServiceProvider.GetService<AppDbContext>());
+            SeedData(context: serviceScope.ServiceProvider.GetService<AppDbContext>() ?? throw new ArgumentNullException());
         }
 
         /// <summary>
@@ -22,9 +26,8 @@ namespace PlatformService.Data
                 context.Platforms.AddRange(
                     new Platform() { Name = "Dot Net", Publisher = "Misrosoft", Cost = "Free" },
                     new Platform() { Name = "Sql Server Express", Publisher = "Misrosoft", Cost = "Free" },
-                    new Platform() { Name = "kubernetes", Publisher = "Cloud Native Computing Foundation", Cost = "Free" },
-                    );
-            context.SaveChanges();
+                    new Platform() { Name = "kubernetes", Publisher = "Cloud Native Computing Foundation", Cost = "Free" });
+                context.SaveChanges();
 
             }
             else

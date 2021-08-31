@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using PlatformService.Data;
 using PlatformService.Models;
 
@@ -29,7 +32,7 @@ namespace PlatformService.Data
 
         public Platform GetPlatformById(int id)
         {
-            return _context.Platforms.FirstOrDefault(x=>x.Id==id);
+            return _context.Platforms.FirstOrDefault(x=>x.Id==id) ?? new Platform();
         }
 
         public bool SaveChanges()
