@@ -1,0 +1,31 @@
+﻿@page "/students"
+@inherits StudentListListBase
+
+<h3>StudentList</h3>
+
+@if (Students is null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+
+    <div class="row">
+        @foreach (var student in Students)
+        {
+            <div class="col-3">
+                <div class="card m-3">
+                    <div class="card-header">
+                        <h3>@student.FirstName @student.LastName</h3>
+                    </div>
+                    <img class="card-img-top imageThumbnail" src="@student.PhotoPath"/>
+                    <div class="card-footer text-center">
+                        <a href="#" class="btn btn-primary m-1">View</a>
+                        <a href="#" class="btn btn-primary m-1">Edit</a>
+                        <a href="#" class="btn btn-danger m-1">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

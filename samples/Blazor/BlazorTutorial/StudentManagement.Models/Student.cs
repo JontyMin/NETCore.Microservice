@@ -1,4 +1,4 @@
-﻿namespace EmployeeManagement.Models;
+﻿namespace StudentManagement.Models;
 
 /// <summary>
 /// 学生
