@@ -36,9 +36,9 @@ public class Student
     public Gender Gender { get; set; }
 
     /// <summary>
-    /// 班级
+    /// 班级Id
     /// </summary>
-    public StudentClass StudentClass { get; set; }
+    public int ClassId { get; set; }
 
     /// <summary>
     /// 头像地址

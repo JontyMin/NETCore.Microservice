@@ -25,7 +25,6 @@ public class StudentListListBase: ComponentBase
             Email = "David@qq.com",
             DateOfBrith = new DateTime(1980, 10, 5),
             Gender = Gender.Male,
-            StudentClass = new StudentClass {ClassId = 1, ClassName = "计算机科学"},
             PhotoPath = "images/john.png"
         };
 
@@ -37,7 +36,6 @@ public class StudentListListBase: ComponentBase
             Email = "Sam@qq.com",
             DateOfBrith = new DateTime(1981, 12, 22),
             Gender = Gender.Male,
-            StudentClass = new StudentClass { ClassId = 2, ClassName = "软件工程" },
             PhotoPath = "images/john.png"
         };
 
@@ -49,7 +47,6 @@ public class StudentListListBase: ComponentBase
             Email = "mary@qq.com",
             DateOfBrith = new DateTime(1979, 11, 11),
             Gender = Gender.Female,
-            StudentClass = new StudentClass { ClassId = 3, ClassName = "通信工程" },
             PhotoPath = "images/john.png"
         };
 
@@ -61,7 +58,6 @@ public class StudentListListBase: ComponentBase
             Email = "sara@qq.com",
             DateOfBrith = new DateTime(1982, 9, 23),
             Gender = Gender.Female,
-            StudentClass = new StudentClass { ClassId = 3, ClassName = "移动互联网" },
             PhotoPath = "images/john.png"
         };
 
