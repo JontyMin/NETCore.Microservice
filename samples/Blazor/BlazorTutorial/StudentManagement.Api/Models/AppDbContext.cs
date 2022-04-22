@@ -10,7 +10,6 @@ public class AppDbContext : DbContext
     {
     }
 
-
     public DbSet<Student> Students { get; set; }
 
     public DbSet<StudentClass> StudentClasses { get; set; }

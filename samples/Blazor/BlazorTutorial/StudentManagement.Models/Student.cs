@@ -1,4 +1,6 @@
-﻿namespace StudentManagement.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StudentManagement.Models;
 
 /// <summary>
 /// 学生
@@ -13,16 +15,20 @@ public class Student
     /// <summary>
     /// 姓
     /// </summary>
+    [Required]
+    [StringLength(100, MinimumLength = 2)]
     public string FirstName { get; set; }
 
     /// <summary>
     /// 名
     /// </summary>
+    [Required]
     public string LastName { get; set; }
 
     /// <summary>
     /// 邮箱
     /// </summary>
+    [Required]
     public string Email { get; set; }
 
     /// <summary>
