@@ -3,6 +3,9 @@
 
 <h3>StudentList</h3>
 
+<input type="checkbox" id="showFooter" @bind="ShowFooter" />
+<label for="showFooter">是否显示</label>
+
 @if (Students is null)
 {
     <div class="spinner"></div>
@@ -13,19 +16,10 @@ else
     <div class="row">
         @foreach (var student in Students)
         {
-            <div class="col-3">
-                <div class="card m-3">
-                    <div class="card-header">
-                        <h3>@student.FirstName @student.LastName</h3>
-                    </div>
-                    <img class="card-img-top imageThumbnail" src="@student.PhotoPath"/>
-                    <div class="card-footer text-center">
-                        <a href="@($"studentdetails/{student.StudentId}")" class="btn btn-primary m-1">查看</a>
-                        <a href="#" class="btn btn-primary m-1">编辑</a>
-                        <a href="#" class="btn btn-danger m-1">删除</a>
-                    </div>
-                </div>
-            </div>
+            <DisplayStudent Student="student" ShowFooter="ShowFooter">
+            </DisplayStudent>
         }
     </div>
+
+
 }

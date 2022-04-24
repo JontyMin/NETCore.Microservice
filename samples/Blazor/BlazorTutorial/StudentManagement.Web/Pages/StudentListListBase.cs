@@ -12,6 +12,8 @@ public class StudentListListBase: ComponentBase
     public List<Student> Students { get; set; }
 
 
+    public bool ShowFooter { get; set; } = true;
+
     protected override async Task OnInitializedAsync()
     {
         Students = (await StudentService.GetStudents()).ToList();
