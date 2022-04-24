@@ -56,7 +56,7 @@ public class StudentController : ControllerBase
                 return BadRequest();
 
             // 添加自定义模型验证错误
-            var stu = _studentRepository.GetStudentByEmail(student.Email);
+            var stu =await _studentRepository.GetStudentByEmail(student.Email);
 
             if (stu != null)
             {
@@ -117,6 +117,27 @@ public class StudentController : ControllerBase
         {
             return StatusCode(StatusCodes.Status500InternalServerError,
                 "数据删除错误");
+        }
+    }
+
+    [HttpGet("{search}")]
+    public async Task<ActionResult<IEnumerable<Student>>> Search(string name, Gender? gender)
+    {
+        try
+        {
+            var result = await _studentRepository.Search(name, gender);
+
+            if (result.Any())
+            {
+                return Ok(result);
+            }
+
+            return NotFound();
+        }
+        catch (Exception)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                "查找失败");
         }
     }
 

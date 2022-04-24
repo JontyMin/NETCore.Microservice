@@ -1,16 +1,20 @@
 ﻿using Microsoft.AspNetCore.Components;
 using StudentManagement.Models;
+using StudentManagement.Web.Services;
 
 namespace StudentManagement.Web.Pages;
 
 public class StudentListListBase: ComponentBase
 {
+    [Inject]
+    public IStudentService StudentService { get; set; } 
+
     public List<Student> Students { get; set; }
 
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Run(LoadStudents);
+        Students = (await StudentService.GetStudents()).ToList();
     }
 
     private void LoadStudents()

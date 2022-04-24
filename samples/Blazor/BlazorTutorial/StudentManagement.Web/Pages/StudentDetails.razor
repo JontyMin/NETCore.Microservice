@@ -1,0 +1,35 @@
+﻿@page "/studentdetails"
+@page "/studentdetails/{id}"
+@inherits StudentDetailsBase
+
+
+@if (Student == null || Student.Class == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+
+    <div class="row justify-content-center m-3">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-header">
+                    <h1>@Student.FirstName @Student.LastName</h1>
+                </div>
+
+                <div class="card-body text-center">
+                    <img src="@Student.PhotoPath" width="200"/>
+
+                    <h4>学号 : @Student.StudentId</h4>
+                    <h4>邮箱 : @Student.Email</h4>
+                    <h4>班级 : @Student.Class.ClassName</h4>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="/students" class="btn btn-primary">返回</a>
+                    <a href="#" class="btn btn-primary">编辑</a>
+                    <a href="#" class="btn btn-danger">删除</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

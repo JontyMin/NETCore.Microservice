@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagement.Models", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagement.Web", "StudentManagement.Web\StudentManagement.Web.csproj", "{4B68CCBB-52C7-46D2-923C-EE17DD3EFC1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentManagement.Api", "StudentManagement.Api\StudentManagement.Api.csproj", "{CF84AE0E-62B2-4D97-B56F-6A87F9E2535C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentManagement.Api", "StudentManagement.Api\StudentManagement.Api.csproj", "{CF84AE0E-62B2-4D97-B56F-6A87F9E2535C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

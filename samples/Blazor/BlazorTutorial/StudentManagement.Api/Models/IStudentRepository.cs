@@ -10,4 +10,6 @@ public interface IStudentRepository
     Task<Student>UpdateStudent(Student student);
     Task<Student> DeleteStudent(int studentId);
     Task<Student> GetStudentByEmail(string email);
+
+    Task<IEnumerable<Student>> Search(string name, Gender? gender);
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Security.AccessControl;
 
 namespace StudentManagement.Models;
 
@@ -45,6 +46,11 @@ public class Student
     /// 班级Id
     /// </summary>
     public int ClassId { get; set; }
+
+    /// <summary>
+    /// 班级
+    /// </summary>
+    public StudentClass Class { get; set; }
 
     /// <summary>
     /// 头像地址
