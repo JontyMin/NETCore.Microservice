@@ -11,8 +11,22 @@ public class StudentListListBase: ComponentBase
 
     public List<Student> Students { get; set; }
 
-
     public bool ShowFooter { get; set; } = true;
+
+    protected int SelectedStudentCount { get; set; } = 0;
+
+    protected void StudentSelectionChanged(bool isSelected)
+    {
+        if (isSelected)
+        {
+            SelectedStudentCount++;
+        }
+        else
+        {
+            SelectedStudentCount--;
+        }
+    }
+
 
     protected override async Task OnInitializedAsync()
     {

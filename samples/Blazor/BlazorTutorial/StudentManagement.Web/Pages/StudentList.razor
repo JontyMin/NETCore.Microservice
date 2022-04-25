@@ -1,7 +1,7 @@
 ﻿@page "/students"
 @inherits StudentListListBase
 
-<h3>StudentList</h3>
+<h3>StudentList- @SelectedStudentCount</h3>
 
 <input type="checkbox" id="showFooter" @bind="ShowFooter" />
 <label for="showFooter">是否显示</label>
@@ -16,7 +16,7 @@ else
     <div class="row">
         @foreach (var student in Students)
         {
-            <DisplayStudent Student="student" ShowFooter="ShowFooter">
+            <DisplayStudent OnStudentSelection="StudentSelectionChanged" Student="student" ShowFooter="ShowFooter">
             </DisplayStudent>
         }
     </div>
