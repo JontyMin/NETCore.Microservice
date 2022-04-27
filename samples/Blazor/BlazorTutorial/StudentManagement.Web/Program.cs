@@ -1,3 +1,4 @@
+using StudentManagement.Web.Models;
 using StudentManagement.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,12 @@ builder.Services.AddHttpClient<IStudentService, StudentService>(option =>
 {
     option.BaseAddress = new Uri("http://localhost:5123/");
 });
+builder.Services.AddHttpClient<IStudentClassService, StudentClassService>(option =>
+{
+    option.BaseAddress = new Uri("http://localhost:5123/");
+});
+
+builder.Services.AddAutoMapper(typeof(StudentProfile));
 
 var app = builder.Build();
 

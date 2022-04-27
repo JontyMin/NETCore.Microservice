@@ -1,4 +1,5 @@
-﻿using StudentManagement.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentManagement.Models;
 
 namespace StudentManagement.Api.Models;
 
@@ -11,13 +12,13 @@ public class StudentClassRepository: IStudentClassRepository
         _appDbContext = appDbContext;
     }
 
-    public IEnumerable<StudentClass> GetStudentClasses()
+    public async Task<IEnumerable<StudentClass>> GetStudentClasses()
     {
-        return _appDbContext.StudentClasses;
+        return await _appDbContext.StudentClasses.ToListAsync();
     }
 
-    public StudentClass GetStudentClass(int id)
+    public async Task<StudentClass> GetStudentClass(int id)
     {
-        return _appDbContext.StudentClasses.FirstOrDefault(x => x.ClassId == id);
+        return await _appDbContext.StudentClasses.FirstOrDefaultAsync(x => x.ClassId == id);
     }
 }

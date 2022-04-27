@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using StudentManagement.Models;
 using StudentManagement.Models.CustomValidators;
 
-namespace StudentManagement.Models;
+namespace StudentManagement.Web.Models;
 
-/// <summary>
-/// 学生
-/// </summary>
-public class Student
+public class EditStudentModel
 {
+
     /// <summary>
     /// 学生Id
     /// </summary>
@@ -17,7 +16,7 @@ public class Student
     /// 姓
     /// </summary>
     [Required(ErrorMessage = "不能为空")]
-    [MinLength(2,ErrorMessage = "长度不能小于2")]
+    [MinLength(2, ErrorMessage = "长度不能小于2")]
     public string FirstName { get; set; }
 
     /// <summary>
@@ -31,8 +30,11 @@ public class Student
     /// </summary>
     [Required]
     [EmailAddress]
-    [EmailDomainValidator(AllowedDomain = "yoyomooc.com",ErrorMessage = "仅支持yoyomooc邮箱")]
+    [EmailDomainValidator(AllowedDomain = "yoyomooc.com", ErrorMessage = "仅支持yoyomooc邮箱")]
     public string Email { get; set; }
+
+    [Compare("Email",ErrorMessage = "邮箱不一致")]
+    public string ConfirmEmail { get; set; }
 
     /// <summary>
     /// 生日

@@ -16,5 +16,6 @@ public class StudentClass
     /// <summary>
     /// 班级名称
     /// </summary>
+    [Required]
     public string ClassName { get; set; }
 }

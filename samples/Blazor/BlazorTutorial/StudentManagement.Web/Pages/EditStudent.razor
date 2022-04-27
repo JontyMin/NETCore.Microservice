@@ -1,0 +1,85 @@
+﻿@page "/editstudent/{id}"
+
+@using StudentManagement.Models
+@inherits EditStudentBase
+
+<EditForm Model="@EditStudentModel" OnValidSubmit="HandleValidSubmit">
+    <ObjectGraphDataAnnotationsValidator />
+    <ValidationSummary />
+    <h3>Edit Student</h3>
+    <hr/>
+    <div class="row mt-2">
+        <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+        <div class="col-sm-10">
+            <InputText id="firstName" class="form-control" placeholder="First Name"
+                       @bind-Value="EditStudentModel.FirstName"/>
+            <ValidationMessage For="@(() => EditStudentModel.FirstName)"/>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <label for="lastName" class="col-sm-2 col-form-label">
+            Last Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="lastName" class="form-control" placeholder="Last Name"
+                       @bind-Value="EditStudentModel.LastName"/>
+            <ValidationMessage For="@(() => EditStudentModel.LastName)" />
+        </div>
+    </div>
+    <div class="row mt-2">
+        <label for="email" class="col-sm-2 col-form-label">
+            Email
+        </label>
+        <div class="col-sm-10">
+            <InputText id="email" class="form-control" placeholder="Email"
+                       @bind-Value="EditStudentModel.Email"/>
+            <ValidationMessage For="@(() => EditStudentModel.Email)" />
+        </div>
+    </div>
+    <div class="row mt-2">
+        <label for="comfirmEmail" class="col-sm-2 col-form-label">
+            Email
+        </label>
+        <div class="col-sm-10">
+            <InputText id="comfirmEmail" class="form-control" placeholder="Email"
+                       @bind-Value="EditStudentModel.ConfirmEmail"/>
+            <ValidationMessage For="@(() => EditStudentModel.ConfirmEmail)" />
+        </div>
+    </div>
+    <div class="row mt-2">
+        <label for="studentClass" class="col-sm-2 col-form-label">
+            StudentClass
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="studentClass" @bind-Value="EditStudentModel.ClassId" class="form-control">
+                @foreach (var item in StudentClasses)
+                {
+                    <option value="@item.ClassId">@item.ClassName</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <label for="gender" class="col-sm-2 col-form-label">
+            Gender
+        </label>
+        <div class="col-sm-10">
+            <InputSelect id="gender" @bind-Value="EditStudentModel.Gender" class="form-control">
+                @foreach (var gender in Enum.GetValues(typeof(Gender)))
+                {
+                    <option value="@gender">@gender</option>
+                }
+            </InputSelect>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <label for="dateOfBrith" class="col-sm-2 col-form-label">
+            DateOfBrith
+        </label>
+        <div class="col-sm-10">
+            <InputDate id="dateOfBrith" @bind-Value="EditStudentModel.DateOfBrith" class="form-control"/>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">确认</button>
+</EditForm>
+
