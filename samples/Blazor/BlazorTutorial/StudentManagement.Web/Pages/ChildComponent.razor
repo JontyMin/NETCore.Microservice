@@ -1,0 +1,10 @@
+﻿<input id="firstName" @attributes="InputAttributes" />
+
+@code {
+    [Parameter]
+    public Dictionary<string, object> InputAttributes { get; set; } = 
+        new Dictionary<string, object>() 
+        {
+            { "placeholder", "子组件" }
+        };
+}

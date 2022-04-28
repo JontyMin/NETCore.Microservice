@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using StudentManagement.Models.CustomValidators;
 
 namespace StudentManagement.Models;
@@ -31,7 +32,7 @@ public class Student
     /// </summary>
     [Required]
     [EmailAddress]
-    [EmailDomainValidator(AllowedDomain = "yoyomooc.com",ErrorMessage = "仅支持yoyomooc邮箱")]
+    // [EmailDomainValidator(AllowedDomain = "yoyomooc.com",ErrorMessage = "仅支持yoyomooc邮箱")]
     public string Email { get; set; }
 
     /// <summary>

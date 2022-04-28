@@ -1,4 +1,5 @@
 ﻿@page "/editstudent/{id}"
+@page "/editstudent"
 
 @using StudentManagement.Models
 @inherits EditStudentBase
@@ -6,7 +7,7 @@
 <EditForm Model="@EditStudentModel" OnValidSubmit="HandleValidSubmit">
     <ObjectGraphDataAnnotationsValidator />
     <ValidationSummary />
-    <h3>Edit Student</h3>
+    <h3>@PageHeader</h3>
     <hr/>
     <div class="row mt-2">
         <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
@@ -81,5 +82,11 @@
         </div>
     </div>
     <button class="btn btn-primary" type="submit">确认</button>
+    @if (EditStudentModel.StudentId > 0)
+    {
+        <button class="btn btn-danger" type="button" @onclick="Delete_Click">
+            删除
+        </button>
+    }
 </EditForm>
 

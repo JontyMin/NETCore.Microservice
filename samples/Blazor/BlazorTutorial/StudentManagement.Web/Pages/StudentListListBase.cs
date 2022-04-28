@@ -27,6 +27,11 @@ public class StudentListListBase: ComponentBase
         }
     }
 
+    protected async Task StudentDeleted()
+    {
+        Students = (await StudentService.GetStudents()).ToList();
+    }
+
 
     protected override async Task OnInitializedAsync()
     {

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Reflection.PortableExecutable;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Components;
 using StudentManagement.Models;
 using StudentManagement.Web.Models;
@@ -10,7 +8,9 @@ namespace StudentManagement.Web.Pages;
 
 public class EditStudentBase: ComponentBase
 {
-    //public Student Student { get; set; } = new Student();
+    public string PageHeader { get; set; }
+
+    public Student Student { get; set; }
 
     [Inject]
     public IStudentService StudentService { get; set; }
@@ -22,22 +22,72 @@ public class EditStudentBase: ComponentBase
     [Inject]
     public IMapper Mapper { get; set; }
 
-    public List<StudentClass> StudentClasses { get; set; } = new List<StudentClass>();
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
 
 
-    public EditStudentModel EditStudentModel { get; set; } = new EditStudentModel();
+    public List<StudentClass> StudentClasses { get; set; } = new();
+
+
+    public EditStudentModel EditStudentModel { get; set; } = new();
 
     [Parameter]
     public string Id { get; set; }
 
-    protected void HandleValidSubmit(){}
+    protected async Task HandleValidSubmit()
+    {
+        Mapper.Map(EditStudentModel, Student);
+
+        Student result = null;
+
+        if (Student.StudentId!=0)
+        {
+            result = await StudentService.UpdateStudent(int.Parse(Id), Student);
+        }
+        else
+        {
+            result = await StudentService.CreateStudent(Student);
+        }
+        
+        if (result != null)
+        {
+            NavigationManager.NavigateTo("/students");
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        var student= await StudentService.GetStudent(int.Parse(Id));
+        int.TryParse(Id, out int studentId);
 
-        Mapper.Map(student, EditStudentModel);
+        if (studentId!=0)
+        {
+            PageHeader = "编辑学生";
+            Student = await StudentService.GetStudent(studentId);
+        }
+        else
+        {
+            PageHeader = "新增学生";
+
+            Student = new Student
+            {
+                ClassId = 1,
+                DateOfBrith = DateTime.Now,
+                PhotoPath = "images/nophoto.jpg",
+                Class = new StudentClass
+                {
+                    ClassName = "test"
+                }
+            };
+        }
+
+        Mapper.Map(Student, EditStudentModel);
 
         StudentClasses = (await StudentClassService.GetClasses()).ToList();
+    }
+
+    protected async Task Delete_Click()
+    {
+        await StudentService.DeleteStudent(Student.StudentId);
+        NavigationManager.NavigateTo("/students");
     }
 }

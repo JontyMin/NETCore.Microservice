@@ -16,7 +16,9 @@ else
     <div class="row">
         @foreach (var student in Students)
         {
-            <DisplayStudent OnStudentSelection="StudentSelectionChanged" Student="student" ShowFooter="ShowFooter">
+            <DisplayStudent OnStudentSelection="StudentSelectionChanged" 
+                            OnStudentDeleted="StudentDeleted"
+                            Student="student" ShowFooter="ShowFooter">
             </DisplayStudent>
         }
     </div>
