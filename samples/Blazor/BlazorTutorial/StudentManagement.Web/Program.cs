@@ -1,7 +1,17 @@
 using StudentManagement.Web.Models;
 using StudentManagement.Web.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using StudentManagement.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("StudentManagementWebContextConnection");;
+
+builder.Services.AddDbContext<StudentManagementWebContext>(options =>
+    options.UseSqlServer(connectionString));;
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<StudentManagementWebContext>();;
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -33,5 +43,6 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+app.UseAuthentication();;
 
 app.Run();

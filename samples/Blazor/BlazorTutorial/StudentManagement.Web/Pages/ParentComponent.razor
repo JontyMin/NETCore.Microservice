@@ -1,12 +1,10 @@
-﻿@page "/pc"
-
-<h1 style="@Style">父组件</h1>
-
-<CascadingValue Value="@Style">
-    <ChildComponent>
-    </ChildComponent>
+﻿<CascadingValue Value="@Style">
+    <CascadingValue Value="@StudentAge">
+        <ChildComponent></ChildComponent>
+    </CascadingValue>
 </CascadingValue>
 
 @code {
     public string Style { get; set; } = "color:red";
+    public int StudentAge { get; set; } = 25;
 }
