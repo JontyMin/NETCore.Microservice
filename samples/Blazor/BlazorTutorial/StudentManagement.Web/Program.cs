@@ -8,14 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("StudentManagementWebContextConnection");;
 
 builder.Services.AddDbContext<StudentManagementWebContext>(options =>
-    options.UseSqlServer(connectionString));;
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<StudentManagementWebContext>();;
+    .AddEntityFrameworkStores<StudentManagementWebContext>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+
+builder.Services.AddAuthentication("Identity.Application").AddCookie();
 
 builder.Services.AddHttpClient<IStudentService, StudentService>(option =>
 {
@@ -42,7 +44,13 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
-app.UseAuthentication();;
+app.UseAuthentication();
+
+app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapBlazorHub();
+    endpoints.MapFallbackToPage("/_Host");
+});
 
 app.Run();
