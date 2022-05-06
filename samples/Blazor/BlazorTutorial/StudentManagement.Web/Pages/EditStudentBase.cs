@@ -1,5 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Net;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using StudentManagement.Models;
 using StudentManagement.Web.Models;
 using StudentManagement.Web.Services;
@@ -34,6 +37,14 @@ public class EditStudentBase: ComponentBase
     [Parameter]
     public string Id { get; set; }
 
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    [Inject]
+    private IAuthorizationService AuthorizationService { get; set; }
+
+
     protected async Task HandleValidSubmit()
     {
         Mapper.Map(EditStudentModel, Student);
@@ -57,6 +68,24 @@ public class EditStudentBase: ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
+
+        var authenticationState = await authenticationStateTask;
+
+        if (!authenticationState.User.Identity.IsAuthenticated)
+        {
+            string returnUrl = WebUtility.UrlEncode($"/editstudent/{Id}");
+            NavigationManager.NavigateTo($"/identity/account/login?returnUrl={returnUrl}");
+        }
+
+
+        var user = (await authenticationStateTask).User;
+
+        if ((await AuthorizationService.AuthorizeAsync(user, "admin-policy"))
+            .Succeeded)
+        {
+            // Execute code specific to admin-policy
+        }
+
         int.TryParse(Id, out int studentId);
 
         if (studentId!=0)
